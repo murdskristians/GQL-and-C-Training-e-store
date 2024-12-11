@@ -6,6 +6,7 @@ using api.Interfaces;
 using api.Models;
 using api.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 
 namespace api.Repository
 {
@@ -19,6 +20,11 @@ namespace api.Repository
         public async Task<List<Comment>> GetAllAsync()
         {
             return await _context.Comments.ToListAsync();
+        }
+
+        public async Task<Comment?> GetByIdAsync(int id)
+        {
+            return await _context.Comments.FindAsync(id);
         }
     }
 }

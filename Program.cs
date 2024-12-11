@@ -10,6 +10,11 @@ builder.Services.AddControllers(); // Register controllers
 builder.Services.AddEndpointsApiExplorer(); // Support for minimal APIs
 builder.Services.AddSwaggerGen(); // Configure Swagger generation
 
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+});
+
 builder.Services.AddDbContext<ApplicationDbContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 }); 
